@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yungtroll's Portfolio</title>
+  <link rel="icon" href="logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,9 +17,6 @@
     body {
       background-color: #0a0f1a;
       color: #e0f0ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 2rem;
     }
 
@@ -26,13 +24,49 @@
       font-size: 2.5rem;
       color: #4da6ff;
       margin-bottom: 1.5rem;
+      text-align: center;
       text-shadow: 0 0 5px #4da6ff;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab {
+      padding: 0.8rem 1.5rem;
+      background-color: #131b2e;
+      border-radius: 8px;
+      color: #4da6ff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .tab.active {
+      background-color: #4da6ff;
+      color: #0a0f1a;
+    }
+
+    .tab:hover {
+      background-color: #1e2a44;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .section-title {
       font-size: 1.5rem;
       color: #4da6ff;
       margin: 2rem 0 1rem;
+      text-align: center;
     }
 
     .gallery, .icon-gallery {
@@ -41,6 +75,7 @@
       gap: 2rem;
       width: 100%;
       max-width: 1000px;
+      margin: 0 auto;
     }
 
     .icon-gallery {
@@ -60,13 +95,13 @@
       box-shadow: 0 0 25px rgba(77, 166, 255, 0.4);
     }
 
-    .item img {
+    .item img, .item video {
       width: 100%;
       display: block;
     }
 
     .price-card {
-      margin-top: 3rem;
+      margin: 2rem auto;
       background-color: #131b2e;
       border-radius: 12px;
       padding: 2rem;
@@ -94,6 +129,8 @@
       box-shadow: 0 0 20px rgba(77, 166, 255, 0.2);
       text-align: center;
       max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .contact-icons {
@@ -119,6 +156,7 @@
 
     .footer {
       margin-top: 3rem;
+      text-align: center;
       font-size: 0.9rem;
       color: #6e8bbd;
     }
@@ -127,30 +165,82 @@
 <body>
   <h1>Yungtroll's Portfolio</h1>
 
-  <div class="section-title">Thumbnails</div>
-  <div class="gallery">
-    <div class="item"><img src="thumb1.png" alt="Thumbnail 1"></div>
-    <div class="item"><img src="thumb2.png" alt="Thumbnail 2"></div>
-    <div class="item"><img src="thumb3.png" alt="Thumbnail 3"></div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('gfx')">GFX</div>
+    <div class="tab" onclick="switchTab('music')">Music</div>
+    <div class="tab" onclick="switchTab('scripting')">Scripting</div>
+    <div class="tab" onclick="switchTab('ui')">UI</div>
   </div>
 
-  <div class="section-title">Icons</div>
-  <div class="icon-gallery">
-    <div class="item"><img src="icon1.png" alt="Icon 1"></div>
-    <div class="item"><img src="icon2.png" alt="Icon 2"></div>
-    <div class="item"><img src="icon3.png" alt="Icon 3"></div>
+  <!-- GFX Section -->
+  <div id="gfx" class="section active">
+    <div class="section-title">Thumbnails</div>
+    <div class="gallery">
+      <div class="item"><img src="thumb1.png" alt="Thumbnail 1"></div>
+      <div class="item"><img src="thumb2.png" alt="Thumbnail 2"></div>
+	  <div class="item"><img src="thumb3.png" alt="Thumbnail 3"></div>
+    </div>
+
+    <div class="section-title">Icons</div>
+    <div class="icon-gallery">
+      <div class="item"><img src="icon1.png" alt="Icon 1"></div>
+	  <div class="item"><img src="icon2.png" alt="Icon 2"></div>
+	  <div class="item"><img src="icon3.png" alt="Icon 3"></div>
+    </div>
+
+    <div class="section-title">Prices</div>
+    <div class="price-card">
+      <p>
+        <strong>1K</strong>
+        <img class="price-icon" src="robux.png" alt="Robux" />
+        Per Thumbnail/Icon
+      </p>
+    </div>
   </div>
 
-<div class="section-title">Prices</div>
-  <div class="price-card">
-    <p>
-      <strong>1K</strong>
-      <img class="price-icon" src="robux.png" alt="Robux" />
-      Per Thumbnail/Icon
-    </p>
+  <!-- Music Section -->
+  <div id="music" class="section">
+    <div class="section-title">Songs</div>
+    <div class="gallery">
+      <div class="item"><audio src="song1.wav" controls></audio></div>
+    </div>
+
+    <div class="section-title">Prices</div>
+    <div class="price-card">
+      <p><strong>5K</strong> <img class="price-icon" src="robux.png" alt="Robux" /> per Song</p>
+      <p><strong>1K</strong> <img class="price-icon" src="robux.png" alt="Robux" /> per Sound Effect</p>
+    </div>
   </div>
 
-	<div class="section-title">Contact Me</div>
+  <!-- Scripting Section -->
+  <div id="scripting" class="section">
+    <div class="section-title">Systems</div>
+    <div class="gallery">
+      <div class="item"><video src="script1.mp4" controls></video></div>
+    </div>
+
+    <div class="section-title">Prices</div>
+    <div class="price-card">
+      <p><strong>1K–10K</strong> <img class="price-icon" src="robux.png" alt="Robux" /> per System</p>
+    </div>
+  </div>
+
+  <!-- UI Section -->
+  <div id="ui" class="section">
+    <div class="section-title">UI Videos</div>
+    <div class="gallery">
+      <div class="item"><video src="ui1.mp4" controls></video></div>
+	  <div class="item"><video src="ui2.mp4" controls></video></div>
+    </div>
+
+    <div class="section-title">Prices</div>
+    <div class="price-card">
+      <p><strong>1K–3K</strong> <img class="price-icon" src="robux.png" alt="Robux" /> per UI</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="section-title">Contact Me</div>
   <div class="contact-section">
     <div class="contact-icons">
       <a href="https://discord.com/users/1224527765596934225" target="_blank" title="Discord">
@@ -165,5 +255,15 @@
   <div class="footer">
     &copy; 2025 Yungtroll. All rights reserved.
   </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+
+      document.querySelector('.tab[onclick*="' + tabId + '"]').classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
